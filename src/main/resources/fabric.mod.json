@@ -1,38 +1,45 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "remasteredcore",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "RemasteredCore",
+  "description": "This is a core mod for the modpack Survival Remastered. Not recommended to use in any other modpack unless you know what you are doing.",
   "authors": [
-    "Me!"
+    "Treetrain1"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Treetrain1/RemasteredCore",
+    "sources": "https://github.com/Treetrain1/RemasteredCore",
+    "issues": "https://github.com/Treetrain1/RemasteredCore/issues"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "LGPL-3.0",
+  "icon": "assets/remasteredcore/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.frozenblock.remasteredcore.RemasteredCore"
+    ],
+    "client": [
+      "net.frozenblock.remasteredcore.RemasteredCoreClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+	"remasteredcore.mixins.json"
   ],
+
+  "accessWidener": "remasteredcore.accesswidener",
 
   "depends": {
     "fabricloader": ">=0.14.9",
-    "fabric-api": "*",
+    "fabric": ">=0.58.0",
     "minecraft": "~1.19",
     "java": ">=17"
   },
-  "suggests": {
-    "another-mod": "*"
+
+  "breaks": {
+    "quilted_fabric_api": "*"
   }
 }

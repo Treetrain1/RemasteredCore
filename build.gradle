@@ -1,5 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'io.github.juuxel.loom-quiltflower' version '1.7.+'
+	id 'org.quiltmc.quilt-mappings-on-loom' version '4.2.1'
 	id 'maven-publish'
 }
 
@@ -9,6 +11,15 @@ targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+def local_frozenlib = findProject(':FrozenLib') != null
+
+loom {
+	mixin {
+		defaultRefmapName = "mixins.remasteredcore.refmap.json"
+	}
+
+	accessWidenerPath = file("src/main/resources/remasteredcore.accesswidener")
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -21,7 +32,7 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
